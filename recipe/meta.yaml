@@ -36,6 +36,17 @@ requirements:
 test:
   imports:
     - pandas_datareader
+    - pandas_datareader.compat
+    - pandas_datareader.google
+    - pandas_datareader.iex
+    - pandas_datareader.io
+    - pandas_datareader.mstar
+    - pandas_datareader.tests
+    - pandas_datareader.tests.google
+    - pandas_datareader.tests.io
+    - pandas_datareader.tests.mstar
+    - pandas_datareader.tests.yahoo
+    - pandas_datareader.yahoo
 
 about:
   home: https://github.com/pydata/pandas-datareader
