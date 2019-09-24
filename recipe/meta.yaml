@@ -1,45 +1,38 @@
 {%set name = "pandas-datareader" %}
-{% set version = "0.7.0" %}
+{% set version = "0.8.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7dee3fe6fa483c8c2ee4f1af91a65b542c5446d75a6fc25c832cad1ffca8ef0b
+  # requirements.txt was no included in the sdist, use the GitHub archive until
+  # fixed by upstream
+  url: https://github.com/pydata/pandas-datareader/archive/v{{ version }}.tar.gz
+  sha256: fb245e5752d93a124516697899c375f7d4f5491255b5b7e1e82085738b2c6035
+  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  #sha256: 30eb46b0944b3bc8750d251907ee8166d5e259f1c103ea74867566664f8fdbe2
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record=record.txt
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
 
 
 requirements:
   host:
     - python
-    - setuptools
+    - pip
 
   run:
     - python
-    - pandas >=0.19.2
+    - pandas >=0.21
     - requests >=2.3.0
-    - wrapt
     - lxml
 
 test:
   imports:
     - pandas_datareader
-    - pandas_datareader.compat
-    - pandas_datareader.google
-    - pandas_datareader.iex
-    - pandas_datareader.io
-    - pandas_datareader.mstar
-    - pandas_datareader.tests
-    - pandas_datareader.tests.google
-    - pandas_datareader.tests.io
-    - pandas_datareader.tests.mstar
-    - pandas_datareader.tests.yahoo
-    - pandas_datareader.yahoo
 
 about:
   home: https://github.com/pydata/pandas-datareader
