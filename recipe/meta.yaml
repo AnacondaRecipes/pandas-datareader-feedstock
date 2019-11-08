@@ -1,17 +1,13 @@
 {%set name = "pandas-datareader" %}
-{% set version = "0.8.0" %}
+{% set version = "0.8.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  # requirements.txt was no included in the sdist, use the GitHub archive until
-  # fixed by upstream
-  url: https://github.com/pydata/pandas-datareader/archive/v{{ version }}.tar.gz
-  sha256: fb245e5752d93a124516697899c375f7d4f5491255b5b7e1e82085738b2c6035
-  #url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  #sha256: 30eb46b0944b3bc8750d251907ee8166d5e259f1c103ea74867566664f8fdbe2
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: b8766b166c84b5e103e1ac57677e8c48084b66c4e477c1d0d437ec4b759c7a92
 
 build:
   number: 0
