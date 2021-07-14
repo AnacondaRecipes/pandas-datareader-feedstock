@@ -14,21 +14,25 @@ build:
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
 
-
 requirements:
   host:
-    - python
+    - python >=3.6
     - pip
-
+    - setuptools
+    - wheel
   run:
-    - python
+    - python >=3.6
+    - lxml
     - pandas >=0.23
     - requests >=2.19.0
-    - lxml
 
 test:
   imports:
     - pandas_datareader
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/pydata/pandas-datareader
