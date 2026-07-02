@@ -1,45 +1,52 @@
-{%set name = "pandas-datareader" %}
-{% set version = "0.10.0" %}
+{% set name = "pandas-datareader" %}
+{% set version = "0.11.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9fc3c63d39bc0c10c2683f1c6d503ff625020383e38f6cbe14134826b454d5a6
+  url: https://pypi.org/packages/source/p/pandas-datareader/pandas_datareader-0.11.1.tar.gz
+  sha256: e1eadb6d2ccaa4b7a876a1c81b6ff0307fa7a08b56f7799862a50207c2e65a05
 
 build:
   number: 0
-  noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation
+  skip: true  # [py<311]
 
 requirements:
   host:
-    - python >=3.6
+    - python
     - pip
-    - setuptools
+    - setuptools >=64
     - wheel
+    - setuptools-scm >=8,<9
   run:
-    - python >=3.6
+    - python
     - lxml
-    - pandas >=0.23
+    - setuptools
+    - pandas >=2.1.4
     - requests >=2.19.0
 
 test:
+  source_files:
+    - tests
   imports:
     - pandas_datareader
   requires:
     - pip
+    - pytest
   commands:
     - pip check
+    - pytest -v tests/test_import_smoke.py
 
 about:
   home: https://github.com/pydata/pandas-datareader
   license: BSD-3
   license_file: LICENSE.md
   license_family: BSD
-  summary: 'Up to date remote data access for pandas, works for multiple versions of pandas'
+  summary: Up to date remote data access for pandas, works for multiple versions of pandas
+  description: Macroeconomic and factor-oriented remote data access for pandas.
   dev_url: https://github.com/pydata/pandas-datareader
   doc_url: https://pandas-datareader.readthedocs.io/en/latest/
 
