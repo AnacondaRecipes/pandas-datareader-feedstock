@@ -24,17 +24,21 @@ requirements:
   run:
     - python
     - lxml
-    - pandas >=0.23
+    - setuptools
+    - pandas >=2.1.4
     - requests >=2.19.0
 
 test:
+  source_files:
+    - tests
   imports:
     - pandas_datareader
   requires:
     - pip
-    - python
+    - pytest
   commands:
     - pip check
+    - pytest -v tests/test_import_smoke.py
 
 about:
   home: https://github.com/pydata/pandas-datareader
@@ -42,6 +46,7 @@ about:
   license_file: LICENSE.md
   license_family: BSD
   summary: Up to date remote data access for pandas, works for multiple versions of pandas
+  description: Macroeconomic and factor-oriented remote data access for pandas.
   dev_url: https://github.com/pydata/pandas-datareader
   doc_url: https://pandas-datareader.readthedocs.io/en/latest/
 
